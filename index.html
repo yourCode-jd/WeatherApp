@@ -4,72 +4,75 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <title>Weather App</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Weather Pro</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
 </head>
 
-<body
-    class="bg-gradient-to-br from-[#0f172a] via-[#111827] to-[#020617] text-white min-h-screen flex items-center justify-center">
+<body id="appBg"
+    class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 to-black text-white transition-all duration-500">
 
-    <div class="w-full max-w-md mx-auto p-6">
-
-        <!-- App Title -->
-        <h1 class="text-4xl font-semibold text-center mb-8 tracking-tight">
-            Weather<span class="text-blue-400">.</span>
-        </h1>
+    <div class="w-full max-w-sm p-4">
 
         <!-- Search -->
         <div class="flex gap-2 mb-4">
             <input id="cityInput" type="text" placeholder="Search city..."
-                class="w-full p-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400" />
-            <button id="searchBtn" class="bg-blue-500 hover:bg-blue-600 px-5 rounded-xl transition">
-                🔍
-            </button>
+                class="w-full p-3 rounded-xl glass focus:outline-none" />
+            <button id="searchBtn" class="px-4 rounded-xl glass hover:bg-white/20">🔍</button>
+        </div>
+
+        <!-- Main Card -->
+        <div class="glass rounded-3xl p-6 relative overflow-hidden">
+
+            <!-- Loader -->
+            <p id="loader" class="text-center hidden mb-2">Loading...</p>
+
+            <!-- City -->
+            <h2 id="cityName" class="text-xl opacity-80">City</h2>
+
+            <!-- Big Temp -->
+            <div class="flex items-center justify-between mt-2">
+                <h1 id="temperature" class="text-7xl font-bold tracking-tight">25°</h1>
+                <img id="weatherIcon" class="w-16 h-16" />
+            </div>
+
+            <!-- Description -->
+            <p id="description" class="opacity-70 capitalize">clear sky</p>
+
+            <!-- Extra Info -->
+            <div class="flex justify-between mt-6 text-sm opacity-80">
+                <div>
+                    <p>Humidity</p>
+                    <p id="humidity" class="font-semibold">--%</p>
+                </div>
+                <div>
+                    <p>Wind</p>
+                    <p id="wind" class="font-semibold">-- km/h</p>
+                </div>
+            </div>
+
+            <!-- Hourly Strip (UI only) -->
+            <div class="mt-6 flex gap-3 overflow-x-auto pb-2">
+                <div class="min-w-15 glass p-2 rounded-xl text-center">12:00<br>☀️<br>30°</div>
+                <div class="min-w-15 glass p-2 rounded-xl text-center">13:00<br>🌤<br>29°</div>
+                <div class="min-w-15 glass p-2 rounded-xl text-center">14:00<br>☁️<br>26°</div>
+                <div class="min-w-15 glass p-2 rounded-xl text-center">15:00<br>🌥<br>24°</div>
+            </div>
+
         </div>
 
         <!-- Location Button -->
-        <button id="locationBtn"
-            class="w-full bg-white/10 backdrop-blur-md border border-white/10 py-2 rounded-xl mb-6 hover:bg-white/20 transition">
+        <button id="locationBtn" class="w-full mt-4 py-2 glass rounded-xl hover:bg-white/20">
             Use My Location 📍
         </button>
-
-        <!-- Weather Card -->
-        <div class="relative bg-white/10 backdrop-blur-xl border border-white/10 p-6 rounded-3xl shadow-2xl">
-
-            <!-- Glow Effect -->
-            <div
-                class="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/10 to-transparent pointer-events-none">
-            </div>
-
-            <!-- Loader -->
-            <p id="loader" class="text-center mb-4 hidden text-blue-300">
-                Loading...
-            </p>
-
-            <!-- Top Section -->
-            <div class="flex items-center justify-between">
-
-                <!-- City -->
-                <div>
-                    <h2 id="cityName" class="text-2xl font-semibold">City Name</h2>
-                    <p id="description" class="text-gray-400 text-sm mt-1">Clear Sky</p>
-                </div>
-
-                <!-- Icon -->
-                <img id="weatherIcon" src="" alt="weather icon" class="w-16 h-16" />
-            </div>
-
-            <!-- Temperature -->
-            <div class="mt-6 text-center">
-                <p id="temperature" class="text-7xl font-bold tracking-tight">
-                    25°
-                </p>
-            </div>
-
-        </div>
 
     </div>
 
